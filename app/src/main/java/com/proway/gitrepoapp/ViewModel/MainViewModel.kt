@@ -1,4 +1,4 @@
-package com.proway.gitrepoapp.ui.main
+package com.proway.gitrepoapp.ViewModel
 
 import androidx.lifecycle.ViewModel
 

@@ -2,7 +2,7 @@ package com.proway.gitrepoapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.proway.gitrepoapp.ui.main.MainFragment
+import com.proway.gitrepoapp.ui.view.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
