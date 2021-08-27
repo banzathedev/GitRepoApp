@@ -9,6 +9,6 @@ interface ServicePRSOfARepo {
     @GET("/repos/{userP}/{repoName}/pulls")
     fun getPRS(
         @Path("userP") user: String,
-        @Path("") repoName: String
+        @Path("repoName") repoName: String
     ): Call<RepoPullRequestResponse>
 }

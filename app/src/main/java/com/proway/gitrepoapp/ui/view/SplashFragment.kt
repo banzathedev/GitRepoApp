@@ -8,8 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.proway.gitrepoapp.R
 import com.proway.gitrepoapp.ViewModel.SplashViewModel
+import com.proway.gitrepoapp.repository.ReposRepository
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class SplashFragment : Fragment() {
+class SplashFragment : Fragment(R.layout.splash_fragment) {
 
     companion object {
         fun newInstance() = SplashFragment()
@@ -17,17 +21,11 @@ class SplashFragment : Fragment() {
 
     private lateinit var viewModel: SplashViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.splash_fragment, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
+        viewModel.LoadModels()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }
