@@ -10,5 +10,5 @@ interface ServicePRSOfARepo {
     fun getPRS(
         @Path("userP") user: String,
         @Path("repoName") repoName: String
-    ): Call<RepoPullRequestResponse>
+    ): Call<List<RepoPullRequestResponse>>
 }

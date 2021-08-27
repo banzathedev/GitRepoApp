@@ -54,13 +54,12 @@ class ReposRepository {
                 call: Call<List<RepoPullRequestResponse>>,
                 response: Response<List<RepoPullRequestResponse>>
             ) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onFailure(call: Call<List<RepoPullRequestResponse>>, t: Throwable) {
                 TODO("Not yet implemented")
             }
-
 
         })
     }
