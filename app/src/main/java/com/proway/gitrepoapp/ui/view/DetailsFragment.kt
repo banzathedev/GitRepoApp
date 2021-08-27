@@ -6,28 +6,43 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.proway.gitrepoapp.R
 import com.proway.gitrepoapp.ViewModel.DetailsViewModel
+import com.proway.gitrepoapp.ViewModel.ListViewModel
+import com.proway.gitrepoapp.adapter.AdapterRepoPrs
+import com.proway.gitrepoapp.adapter.AdapterRepositorios
+import com.proway.gitrepoapp.databinding.DetailsFragmentBinding
+import com.proway.gitrepoapp.databinding.ListFragmentBinding
+import com.proway.gitrepoapp.singletons.SingletonRepoPrs
+import com.proway.gitrepoapp.singletons.SingletonRepoResponse
+import com.proway.gitrepoapp.utils.replaceView
 
-class DetailsFragment : Fragment() {
+class DetailsFragment : Fragment(R.layout.details_fragment) {
 
     companion object {
         fun newInstance() = DetailsFragment()
     }
 
     private lateinit var viewModel: DetailsViewModel
+    private lateinit var recycler: RecyclerView
+    private  var adapter = AdapterRepoPrs(){
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.details_fragment, container, false)
     }
+    private lateinit var binding: DetailsFragmentBinding
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = DetailsFragmentBinding.bind(view)
         viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        recycler = binding.recyclerViewNoXml
+        recycler.layoutManager = LinearLayoutManager(requireContext())
+        recycler.adapter = adapter
+        SingletonRepoPrs.resp?.let { adapter.refresh(it) }
     }
 
 }

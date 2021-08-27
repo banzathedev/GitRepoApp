@@ -6,6 +6,7 @@ import com.proway.gitrepoapp.model.LanguagesResponse
 import com.proway.gitrepoapp.model.RepoPullRequestResponse
 import com.proway.gitrepoapp.model.RepositoriesResponse
 import com.proway.gitrepoapp.services.*
+import com.proway.gitrepoapp.singletons.SingletonRepoPrs
 import com.proway.gitrepoapp.singletons.SingletonRepoResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -56,7 +57,7 @@ class ReposRepository {
             })
     }
 
-    fun getPrsOfARepo(user: String, repoName: String) {
+    fun getPrsOfARepo(user: String, repoName: String, callback: (Boolean) -> Unit) {
         val api = RetrofitBuilder.getInstance(BuildConfig.GITHUB_API_URL)
             .create(ServicePRSOfARepo::class.java)
         api.getPRS(user, repoName).clone()
@@ -65,11 +66,13 @@ class ReposRepository {
                     call: Call<List<RepoPullRequestResponse>>,
                     response: Response<List<RepoPullRequestResponse>>
                 ) {
-
+                        if (response.body() != null){
+                            SingletonRepoPrs.resp = response.body()
+                            callback(true)
+                        }
                 }
 
                 override fun onFailure(call: Call<List<RepoPullRequestResponse>>, t: Throwable) {
-
                 }
 
             })

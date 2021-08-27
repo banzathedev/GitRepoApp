@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.proway.gitrepoapp.R
@@ -23,18 +24,19 @@ class ListFragment : Fragment(R.layout.list_fragment) {
 
     private lateinit var viewModel: ListViewModel
     private lateinit var recycler: RecyclerView
-    private  var adapter = AdapterRepositorios(){  rr ->
+    private var adapter = AdapterRepositorios() { rr ->
         viewModel.callGetRepoPrs(rr.ownerInfo.login, rr.repoName)
-        requireActivity().replaceView(DetailsFragment())
     }
     private lateinit var binding: ListFragmentBinding
-
+    private var observerResp = Observer<Boolean> {
+        requireActivity().replaceView(DetailsFragment())
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = ListFragmentBinding.bind(view)
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
-
+        viewModel.changes.observe(viewLifecycleOwner, observerResp)
         recycler = binding.recyclerViewNoXml
         recycler.layoutManager = LinearLayoutManager(requireContext())
         recycler.adapter = adapter

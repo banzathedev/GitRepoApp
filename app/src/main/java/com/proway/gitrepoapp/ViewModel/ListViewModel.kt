@@ -12,7 +12,9 @@ class ListViewModel : ViewModel() {
     var changes: LiveData<Boolean> = _changes
 
     fun callGetRepoPrs(user: String, repoName: String) {
-        repo.getPrsOfARepo(user, repoName)
+        repo.getPrsOfARepo(user, repoName){
+            _changes.value = true
+        }
 
 
     }
