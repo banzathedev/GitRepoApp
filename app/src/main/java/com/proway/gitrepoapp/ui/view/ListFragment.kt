@@ -7,26 +7,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.proway.gitrepoapp.R
-import com.proway.gitrepoapp.ViewModel.SplashViewModel
+import com.proway.gitrepoapp.ViewModel.ListViewModel
 
-class SplashFragment : Fragment() {
+class ListFragment : Fragment() {
 
     companion object {
-        fun newInstance() = SplashFragment()
+        fun newInstance() = ListFragment()
     }
 
-    private lateinit var viewModel: SplashViewModel
+    private lateinit var viewModel: ListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.splash_fragment, container, false)
+        return inflater.inflate(R.layout.list_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
