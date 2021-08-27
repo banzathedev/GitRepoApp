@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class ReposRepository {
 
-    fun getAllReposAndLangs() {
+    fun getAllReposAndLangs(callback: (Boolean) -> Unit) {
         RetrofitBuilder.getInstance(BuildConfig.GITHUB_API_URL).create(ServiceAllRepos::class.java)
             .getRepos().clone().enqueue(object : Callback<List<RepositoriesResponse>> {
                 override fun onResponse(
@@ -23,9 +23,12 @@ class ReposRepository {
                     response.body().let { resp ->
                         if (resp != null) {
                             SingletonRepoResponse.resp = resp
-                            notifyChanges(true)
+                            callback(true)
+
                         } else {
-                        getAllReposAndLangs()
+                            getAllReposAndLangs() {
+
+                            }
                         }
 
                     }
@@ -71,9 +74,7 @@ class ReposRepository {
 
             })
     }
-    fun notifyChanges(param: Boolean = false): Boolean{
-        return param
-    }
+
 
     fun getReposBylang(lang: String) {
         val api = RetrofitBuilder.getInstance(BuildConfig.GITHUB_API_URL)

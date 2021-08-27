@@ -28,6 +28,7 @@ class SplashFragment : Fragment(R.layout.splash_fragment) {
         viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
         viewModel.LoadModels()
         viewModel.changes.observe(viewLifecycleOwner, observerResponse)
+
     }
 
     private var observerResponse = Observer<Boolean> {

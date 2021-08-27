@@ -12,16 +12,13 @@ class SplashViewModel : ViewModel() {
     var changes: LiveData<Boolean> = _changes
 
     fun LoadModels() {
-        repo.getAllReposAndLangs()
-        notifyChangesOnResponse()
-
-    }
-
-    fun notifyChangesOnResponse() {
-        if (repo.notifyChanges() == true) {
-            _changes.value = true
+        repo.getAllReposAndLangs(){
+            _changes.value = it
         }
 
+
     }
+
+
 
 }
