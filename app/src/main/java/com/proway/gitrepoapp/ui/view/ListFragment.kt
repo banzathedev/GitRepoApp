@@ -6,28 +6,40 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.proway.gitrepoapp.R
 import com.proway.gitrepoapp.ViewModel.ListViewModel
+import com.proway.gitrepoapp.adapter.AdapterRepositorios
+import com.proway.gitrepoapp.databinding.ListFragmentBinding
+import com.proway.gitrepoapp.singletons.SingletonRepoResponse
+import com.proway.gitrepoapp.utils.replaceView
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(R.layout.list_fragment) {
 
     companion object {
         fun newInstance() = ListFragment()
     }
 
     private lateinit var viewModel: ListViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.list_fragment, container, false)
+    private lateinit var recycler: RecyclerView
+    private  var adapter = AdapterRepositorios(){  rr ->
+        viewModel.callGetRepoPrs(rr.ownerInfo.login, rr.repoName)
+        requireActivity().replaceView(DetailsFragment())
     }
+    private lateinit var binding: ListFragmentBinding
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = ListFragmentBinding.bind(view)
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        recycler = binding.recyclerViewNoXml
+        recycler.layoutManager = LinearLayoutManager(requireContext())
+        recycler.adapter = adapter
+        SingletonRepoResponse.resp?.let { adapter.refresh(it) }
     }
+
 
 }

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class RepositoriesResponse(
     @SerializedName("id")
     val id: Int,
-    @SerializedName("Name")
+    @SerializedName("name")
     val repoName: String,
     @SerializedName("full_name")
     val fullName: String,

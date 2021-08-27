@@ -21,9 +21,14 @@ class AdapterRepositorios(val OnItemClick: (RepositoriesResponse) -> Unit ) : Re
     override fun onBindViewHolder(holder: RepositoriesViewHolder, position: Int) {
         listOfRepos[position].apply {
             holder.bind(this)
+            holder.itemView.setOnClickListener { OnItemClick(this) }
         }
     }
 
+    fun refresh(mLista: List<RepositoriesResponse>){
+        listOfRepos.addAll(mLista)
+        notifyDataSetChanged()
+    }
     override fun getItemCount(): Int = listOfRepos.size
 
 }
@@ -32,6 +37,7 @@ class RepositoriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     private  var binding = ItemListBinding.bind(itemView)
 
     fun bind(repositories: RepositoriesResponse){
-        binding.textViewRepoName.text = repositories.fullName
+        binding.textViewRepoName.text = "Nome repositorio : ${repositories.fullName} + ${repositories.repoName}"
+        binding.textRepoAlgo.text = repositories.repoDescripition
     }
 }
