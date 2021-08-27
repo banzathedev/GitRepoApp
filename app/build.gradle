@@ -13,7 +13,6 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -21,6 +20,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug{
+            buildConfigField "String", "GITHUB_API_URL", "\"https://api.github.com/\""
+            buildConfigField "String", "GITHUB_LANGS_URL", "\"https://gist.githubusercontent.com/\""
         }
     }
     compileOptions {

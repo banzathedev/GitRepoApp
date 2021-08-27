@@ -5,14 +5,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
-    private val retrofitBase = Retrofit.Builder()
-        .baseUrl("https://api.github.com")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
 
-    fun getServiceAllRepositories(): ServiceAllRepos{
-        return retrofitBase.create(ServiceAllRepos::class.java)
-    }
+
+   fun getInstance(path: String): Retrofit {
+       return Retrofit.Builder().baseUrl(path)
+           .addConverterFactory(GsonConverterFactory.create())
+           .build()
+
+   }
 
     // TODO make services.
 }
