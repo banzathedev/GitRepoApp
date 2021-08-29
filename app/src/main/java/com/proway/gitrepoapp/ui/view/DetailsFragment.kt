@@ -1,5 +1,7 @@
 package com.proway.gitrepoapp.ui.view
 
+import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -27,7 +29,9 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
 
     private lateinit var viewModel: DetailsViewModel
     private lateinit var recycler: RecyclerView
-    private  var adapter = AdapterRepoPrs(){
+    private  var adapter = AdapterRepoPrs(){ repoPr ->
+        val browser = Intent(Intent.ACTION_VIEW, Uri.parse(repoPr.htmlUrl))
+        startActivity(browser)
 
     }
     private lateinit var binding: DetailsFragmentBinding
