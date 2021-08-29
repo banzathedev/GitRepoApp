@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardViewiTEMxML"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:backgroundTint="@color/teal_200"
+        android:backgroundTint="@color/card_bg_gray"
         app:cardCornerRadius="20dp"
         app:cardElevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,34 +20,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/imageViewAuthor"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:src="@drawable/github_logo" />
+
             <TextView
-                android:id="@+id/textViewRepoName"
+                android:id="@+id/textViewAuthorName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/imageViewAuthor"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewAuthor"
+                app:layout_constraintStart_toStartOf="@+id/imageViewAuthor"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="nome prod" />
+                tools:text="nome auhtor"
+                android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/textRepoAlgo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textViewRepoName"
-                app:layout_constraintTop_toBottomOf="@id/textViewRepoName"
-                tools:text="preco produto" />
 
-            <TextView
-                android:id="@+id/textViewProductCategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textRepoAlgo" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

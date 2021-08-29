@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="nardo_gray">#828788</color>
     <color name="gray_ish">#55585E</color>
+    <color name="card_bg_gray">#8E979E</color>
 </resources>
