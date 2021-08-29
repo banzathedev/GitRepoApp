@@ -7,6 +7,6 @@ import retrofit2.http.GET
 
 interface ServiceAllRepos {
     @GET("search/repositories?q=language:Java&sort=fork&order=desc")
-    fun getRepos() : Call<ItemRepoList>
+    fun getRepos(): Call<ItemRepoList>
 
 }

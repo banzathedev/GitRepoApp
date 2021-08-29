@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.proway.gitrepoapp.R
 import com.proway.gitrepoapp.ViewModel.ListViewModel
 import com.proway.gitrepoapp.adapter.AdapterRepositorios
@@ -29,7 +30,16 @@ class ListFragment : Fragment(R.layout.list_fragment) {
     }
     private lateinit var binding: ListFragmentBinding
     private var observerResp = Observer<Boolean> {
-        requireActivity().replaceView(DetailsFragment())
+        if (it == true) {
+            requireActivity().replaceView(DetailsFragment())
+        } else {
+            Snackbar.make(
+                requireView(),
+                "Ah.. parece que esse reposiotorio nao teve pull requests.",
+                Snackbar.LENGTH_LONG
+            ).show()
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

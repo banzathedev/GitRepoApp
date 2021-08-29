@@ -29,13 +29,12 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
 
     private lateinit var viewModel: DetailsViewModel
     private lateinit var recycler: RecyclerView
-    private  var adapter = AdapterRepoPrs(){ repoPr ->
+    private var adapter = AdapterRepoPrs() { repoPr ->
         val browser = Intent(Intent.ACTION_VIEW, Uri.parse(repoPr.htmlUrl))
         startActivity(browser)
 
     }
     private lateinit var binding: DetailsFragmentBinding
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

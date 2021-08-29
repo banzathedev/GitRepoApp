@@ -48,7 +48,7 @@ class ReposRepository {
                     call: Call<List<LanguagesResponse>>,
                     response: Response<List<LanguagesResponse>>
                 ) {
-
+                    //TODO implement
                 }
 
                 override fun onFailure(call: Call<List<LanguagesResponse>>, t: Throwable) {
@@ -67,10 +67,12 @@ class ReposRepository {
                     call: Call<List<RepoPullRequestResponse>>,
                     response: Response<List<RepoPullRequestResponse>>
                 ) {
-                        if (response.body() != null){
-                            SingletonRepoPrs.resp = response.body()
-                            callback(true)
-                        }
+                    if (response.body() != null) {
+                        SingletonRepoPrs.resp = response.body()
+                        callback(true)
+                    } else {
+                        callback(false)
+                    }
                 }
 
                 override fun onFailure(call: Call<List<RepoPullRequestResponse>>, t: Throwable) {
@@ -79,7 +81,7 @@ class ReposRepository {
             })
     }
 
-
+    //Todo yet to implement.
     fun getReposBylang(lang: String) {
         val api = RetrofitBuilder.getInstance(BuildConfig.GITHUB_API_URL)
             .create(ServiceRepoByLanguage::class.java)
@@ -92,7 +94,7 @@ class ReposRepository {
                 call: Call<List<RepositoriesResponse>>,
                 response: Response<List<RepositoriesResponse>>
             ) {
-                // nunca que falha
+
             }
         })
     }

@@ -10,7 +10,8 @@ import com.proway.gitrepoapp.databinding.ItemListBinding
 import com.proway.gitrepoapp.model.RepositoriesResponse
 import com.proway.gitrepoapp.singletons.SingletonRepoResponse
 
-class AdapterRepositorios(val OnItemClick: (RepositoriesResponse) -> Unit ) : RecyclerView.Adapter<RepositoriesViewHolder>() {
+class AdapterRepositorios(val OnItemClick: (RepositoriesResponse) -> Unit) :
+    RecyclerView.Adapter<RepositoriesViewHolder>() {
     private var listOfRepos = mutableListOf<RepositoriesResponse>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoriesViewHolder {
@@ -26,19 +27,20 @@ class AdapterRepositorios(val OnItemClick: (RepositoriesResponse) -> Unit ) : Re
         }
     }
 
-    fun refresh(mLista: List<RepositoriesResponse>){
+    fun refresh(mLista: List<RepositoriesResponse>) {
         listOfRepos.addAll(mLista)
         notifyDataSetChanged()
     }
+
     override fun getItemCount(): Int = listOfRepos.size
 
 }
 
-class RepositoriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
-    private  var binding = ItemListBinding.bind(itemView)
+class RepositoriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private var binding = ItemListBinding.bind(itemView)
 
-    fun bind(repositories: RepositoriesResponse){
-       binding.textViewRepositoryName.text = " Repo Name: ${repositories.repoName}"
+    fun bind(repositories: RepositoriesResponse) {
+        binding.textViewRepositoryName.text = " Repo Name: ${repositories.repoName}"
         binding.textViewRepositoryDescription.text = "Repo Desc: ${repositories.repoDescripition}"
         binding.textViewAuthorName.text = "Author: ${repositories.ownerInfo.login}"
         binding.textViewForks.text = repositories.forksCount
