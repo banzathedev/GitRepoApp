@@ -37,7 +37,7 @@ class RepositoriesPrsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVi
     private  var binding = ItemListBinding.bind(itemView)
 
     fun bind(repositoriesPrs: RepoPullRequestResponse){
-        binding.textViewRepoName.text = "Nome do PR: ${repositoriesPrs.titleOfThePr}"
-        binding.textRepoAlgo.text = repositoriesPrs.userOfThePr.loginOfUserOfPr
+       // binding.textViewRepoName.text = "Nome do PR: ${repositoriesPrs.titleOfThePr}"
+       // binding.textRepoAlgo.text = repositoriesPrs.userOfThePr.loginOfUserOfPr
     }
 }

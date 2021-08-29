@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.proway.gitrepoapp.R
 import com.proway.gitrepoapp.databinding.ItemListBinding
 import com.proway.gitrepoapp.model.RepositoriesResponse
@@ -37,7 +38,16 @@ class RepositoriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     private  var binding = ItemListBinding.bind(itemView)
 
     fun bind(repositories: RepositoriesResponse){
-        binding.textViewRepoName.text = "Nome repositorio : ${repositories.fullName} + ${repositories.repoName}"
-        binding.textRepoAlgo.text = repositories.repoDescripition
+       binding.textViewRepositoryName.text = " Repo Name: ${repositories.repoName}"
+        binding.textViewRepositoryDescription.text = "Repo Desc: ${repositories.repoDescripition}"
+        binding.textViewAuthorName.text = "Author: ${repositories.ownerInfo.login}"
+        binding.textViewForks.text = repositories.forksCount
+        binding.textViewStars.text = repositories.starsCount
+        binding.imageViewAuthor.apply {
+            Glide.with(this)
+                .load(repositories.ownerInfo.avatarUrl)
+                .placeholder(R.drawable.github_logo_white)
+                .into(this)
+        }
     }
 }

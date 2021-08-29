@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.view.ListFragment"
-    android:background="@drawable/bg_gray">
+    android:background="@drawable/bg_light">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNoXml"

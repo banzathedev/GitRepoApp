@@ -2,6 +2,11 @@ package com.proway.gitrepoapp.model
 
 import com.google.gson.annotations.SerializedName
 
+data class ItemRepoList(
+    @SerializedName("items")
+    val repolist: List<RepositoriesResponse>
+)
+
 data class RepositoriesResponse(
     @SerializedName("id")
     val id: Int,
@@ -23,6 +28,10 @@ data class RepositoriesResponse(
     val languagesUrl: String,
     @SerializedName("contributors_url")
     val contributorsUrl: String,
+    @SerializedName("forks_count")
+    val forksCount: String,
+    @SerializedName("stargazers_count")
+    val starsCount: String,
 
 
     )

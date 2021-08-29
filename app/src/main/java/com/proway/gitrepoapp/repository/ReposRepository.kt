@@ -2,6 +2,7 @@ package com.proway.gitrepoapp.repository
 
 
 import com.proway.gitrepoapp.BuildConfig
+import com.proway.gitrepoapp.model.ItemRepoList
 import com.proway.gitrepoapp.model.LanguagesResponse
 import com.proway.gitrepoapp.model.RepoPullRequestResponse
 import com.proway.gitrepoapp.model.RepositoriesResponse
@@ -16,14 +17,14 @@ class ReposRepository {
 
     fun getAllReposAndLangs(callback: (Boolean) -> Unit) {
         RetrofitBuilder.getInstance(BuildConfig.GITHUB_API_URL).create(ServiceAllRepos::class.java)
-            .getRepos().clone().enqueue(object : Callback<List<RepositoriesResponse>> {
+            .getRepos().clone().enqueue(object : Callback<ItemRepoList> {
                 override fun onResponse(
-                    call: Call<List<RepositoriesResponse>>,
-                    response: Response<List<RepositoriesResponse>>
+                    call: Call<ItemRepoList>,
+                    response: Response<ItemRepoList>
                 ) {
                     response.body().let { resp ->
                         if (resp != null) {
-                            SingletonRepoResponse.resp = resp
+                            SingletonRepoResponse.resp = resp.repolist
                             callback(true)
 
                         } else {
@@ -35,7 +36,7 @@ class ReposRepository {
                     }
                 }
 
-                override fun onFailure(call: Call<List<RepositoriesResponse>>, t: Throwable) {
+                override fun onFailure(call: Call<ItemRepoList>, t: Throwable) {
                     println(t.message)
                 }
 

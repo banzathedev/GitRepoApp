@@ -42,7 +42,7 @@
                 android:textSize="16dp" />
 
             <TextView
-                android:id="@+id/textViewRepositoryName"
+                android:id="@+id/textViewTittlePullRequest"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -54,63 +54,20 @@
                 tools:text="nome do repo" />
 
             <TextView
-                android:id="@+id/textViewRepositoryDescription"
+                android:id="@+id/textViewOpenDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:maxLines="2"
-                app:layout_constraintBottom_toTopOf="@+id/textViewStars"
-                app:layout_constraintEnd_toEndOf="@+id/textViewRepositoryName"
-                app:layout_constraintStart_toStartOf="@+id/textViewRepositoryName"
-                app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryName"
-                tools:text="descricao do repo" />
-
-            <ImageView
-                android:id="@+id/imageAssetStar"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_baseline_star_24"
-                android:layout_margin="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="@+id/textViewTittlePullRequest"
+                app:layout_constraintStart_toStartOf="@+id/textViewTittlePullRequest"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTittlePullRequest" />
 
             <TextView
-                android:id="@+id/textViewStars"
-                android:layout_width="45dp"
-                android:maxLines="1"
-                android:maxLength="10"
-                android:ellipsize="end"
+                android:id="@+id/textViewClosedDate"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="39783"
-                app:layout_constraintBottom_toBottomOf="@+id/imageAssetStar"
-                app:layout_constraintStart_toEndOf="@+id/imageAssetStar"
-                app:layout_constraintTop_toTopOf="@+id/imageAssetStar" />
-
-            <ImageView
-                android:id="@+id/imageAssetForks"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="20dp"
-                android:src="@drawable/github_mark_120px_plus"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textViewStars" />
-
-            <TextView
-                android:id="@+id/textViewForks"
-                android:layout_width="40dp"
-                android:maxLines="1"
-                android:maxLength="10"
-                android:ellipsize="end"
-                android:layout_marginStart="5dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageAssetForks"
-                app:layout_constraintEnd_toStartOf="@+id/imageViewAuthor"
-                app:layout_constraintStart_toEndOf="@+id/imageAssetForks"
-                app:layout_constraintTop_toTopOf="@+id/imageAssetForks"
-                tools:text="2345453" />
-
+                app:layout_constraintEnd_toEndOf="@+id/textViewOpenDate"
+                app:layout_constraintStart_toStartOf="@+id/textViewOpenDate"
+                app:layout_constraintTop_toBottomOf="@+id/textViewOpenDate" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
