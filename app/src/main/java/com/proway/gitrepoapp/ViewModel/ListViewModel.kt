@@ -13,7 +13,7 @@ class ListViewModel : ViewModel() {
 
     fun callGetRepoPrs(user: String, repoName: String) {
         repo.getPrsOfARepo(user, repoName) {
-            _changes.value = it
+            _changes.value = true
         }
 
 

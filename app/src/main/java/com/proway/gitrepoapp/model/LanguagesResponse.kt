@@ -7,4 +7,8 @@ data class LanguagesResponse(
     val name: String,
     @SerializedName("id")
     val id: Int,
-)
+){
+    override fun toString(): String {
+        return name
+    }
+}
