@@ -31,7 +31,7 @@ class ListFragment : Fragment(R.layout.list_fragment) {
 
     private lateinit var viewModel: ListViewModel
     private lateinit var recycler: RecyclerView
-    private var selectedLanguage: String? = null
+    private var selectedLanguage = "Kotlin"
     private var adapter = AdapterRepositorios() { repoResp ->
         viewModel.callGetRepoPrs(repoResp.ownerInfo.login, repoResp.repoName)
     }
@@ -64,47 +64,28 @@ class ListFragment : Fragment(R.layout.list_fragment) {
         recycler = binding.recyclerViewNoXml
         recycler.layoutManager = LinearLayoutManager(requireContext())
         recycler.adapter = adapter
-        createDropCategories(SingletonLangs.resp)
+        SingletonLangs.resp?.let { setupAutoComplete(it) }
         SingletonRepoResponse.resp?.let { adapter.refresh(it) }
-
-        //TODO Arrumar
-        binding.spinnerIdXML.onItemClickListener.apply {
-            if (selectedLanguage != null) {
-                viewModel.callRepoByLangs(selectedLanguage!!)
-            }
-        }
+    binding.include.buttonSearch.setOnClickListener {
+        viewModel.callRepoByLangs(selectedLanguage)
     }
 
-    private fun createDropCategories(lang: List<LanguagesResponse>?) {
-        lang?.toMutableList()?.let { lang ->
-            val adapter = ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_dropdown_item_1line, lang
-            )
-            binding.spinnerIdXML.adapter = adapter
+    }
 
-            binding.spinnerIdXML.onItemSelectedListener =
+    private fun setupAutoComplete(languages: List<LanguagesResponse>) {
 
-                object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                        var selectedLang = p0?.getItemAtPosition(p2) as LanguagesResponse
-                        // TODO call a method to get a new list by langs.
-                        selectedLanguage = selectedLang.name
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line, languages
+        )
 
+        val autoCompleteTextView = binding.include.autoComplete
+        autoCompleteTextView.setAdapter(adapter)
 
-                    }
+        autoCompleteTextView.setOnItemClickListener { adapterView, p1, position, p3 ->
+            selectedLanguage = adapterView.getItemAtPosition(position).toString()
 
-                    override fun onNothingSelected(p0: AdapterView<*>?) {
-                        Snackbar.make(
-                            requireView(),
-                            "Ops parece que ocorreu um erro.",
-                            Snackbar.LENGTH_LONG
-                        ).show()
-                    }
-
-                }
         }
-
-
     }
 }
+

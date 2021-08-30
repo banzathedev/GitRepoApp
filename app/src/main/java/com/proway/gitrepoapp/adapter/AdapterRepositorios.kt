@@ -28,6 +28,7 @@ class AdapterRepositorios(val OnItemClick: (RepositoriesResponse) -> Unit) :
     }
 
     fun refresh(mLista: List<RepositoriesResponse>) {
+        listOfRepos.clear()
         listOfRepos.addAll(mLista)
         notifyDataSetChanged()
     }
