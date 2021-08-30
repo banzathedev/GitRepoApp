@@ -20,18 +20,20 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:src="@drawable/github_logo"
                 android:id="@+id/imageViewAuthor"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                app:civ_border_width="2dp"
                 android:layout_margin="10dp"
+                app:civ_border_color="#ff000000"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:src="@drawable/github_logo" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/textViewAuthorName"
+                android:textColor="@color/blue_light"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/imageViewAuthor"
@@ -47,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textSize="20dp"
+                android:textColor="@color/blue_light"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/textViewAuthorName"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +58,9 @@
 
             <TextView
                 android:id="@+id/textViewOpenDate"
+                android:textColor="@color/orange"
                 android:layout_width="0dp"
+                android:maxLines="1"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@+id/textViewTittlePullRequest"
                 app:layout_constraintStart_toStartOf="@+id/textViewTittlePullRequest"
@@ -64,6 +69,8 @@
             <TextView
                 android:id="@+id/textViewClosedDate"
                 android:layout_width="0dp"
+                android:maxLines="1"
+                android:textColor="@color/orange"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@+id/textViewOpenDate"
                 app:layout_constraintStart_toStartOf="@+id/textViewOpenDate"
