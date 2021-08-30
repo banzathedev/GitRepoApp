@@ -16,7 +16,9 @@ import com.proway.gitrepoapp.R
 import com.proway.gitrepoapp.ViewModel.ListViewModel
 import com.proway.gitrepoapp.adapter.AdapterRepositorios
 import com.proway.gitrepoapp.databinding.ListFragmentBinding
+import com.proway.gitrepoapp.model.ItemRepoList
 import com.proway.gitrepoapp.model.LanguagesResponse
+import com.proway.gitrepoapp.model.RepositoriesResponse
 import com.proway.gitrepoapp.singletons.SingletonLangs
 import com.proway.gitrepoapp.singletons.SingletonRepoResponse
 import com.proway.gitrepoapp.utils.replaceView
@@ -30,8 +32,8 @@ class ListFragment : Fragment(R.layout.list_fragment) {
     private lateinit var viewModel: ListViewModel
     private lateinit var recycler: RecyclerView
     private lateinit var selectedLang: LanguagesResponse
-    private var adapter = AdapterRepositorios() { rr ->
-        viewModel.callGetRepoPrs(rr.ownerInfo.login, rr.repoName)
+    private var adapter = AdapterRepositorios() { repoResp ->
+        viewModel.callGetRepoPrs(repoResp.ownerInfo.login, repoResp.repoName)
     }
     private lateinit var binding: ListFragmentBinding
     private var observerResp = Observer<Boolean> {
@@ -44,7 +46,11 @@ class ListFragment : Fragment(R.layout.list_fragment) {
                 Snackbar.LENGTH_LONG
             ).show()
         }
-
+    }
+    private var observerLang = Observer<Boolean> {
+        if (it == true){
+          // TODO   adapter.refresh()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,15 +78,19 @@ class ListFragment : Fragment(R.layout.list_fragment) {
                     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                         selectedLang = p0?.getItemAtPosition(p2) as LanguagesResponse
                         // TODO call a method to get a new list by langs.
+                      // TODO  viewModel.callRepoByLangs(selectedLang.name.toString())
                     }
 
                     override fun onNothingSelected(p0: AdapterView<*>?) {
-                       Snackbar.make(requireView(), "Ops parece que ocorreu um erro.", Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(
+                            requireView(),
+                            "Ops parece que ocorreu um erro.",
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
 
                 }
         }
-
 
 
     }

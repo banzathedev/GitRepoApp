@@ -43,8 +43,8 @@ class RepositoriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         binding.textViewRepositoryName.text = " Repo Name: ${repositories.repoName}"
         binding.textViewRepositoryDescription.text = "Repo Desc: ${repositories.repoDescripition}"
         binding.textViewAuthorName.text = "Author: ${repositories.ownerInfo.login}"
-        binding.textViewForks.text = repositories.forksCount
-        binding.textViewStars.text = repositories.starsCount
+        binding.textViewForks.text = "${repositories.forksCount}K"
+        binding.textViewStars.text = "${repositories.starsCount}K"
         binding.imageViewAuthor.apply {
             Glide.with(this)
                 .load(repositories.ownerInfo.avatarUrl)

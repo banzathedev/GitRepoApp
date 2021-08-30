@@ -11,12 +11,18 @@ class ListViewModel : ViewModel() {
     private val _changes = MutableLiveData<Boolean>()
     var changes: LiveData<Boolean> = _changes
 
+    private val _refresh = MutableLiveData<Boolean>()
+    var refresh: LiveData<Boolean> = _refresh
+
     fun callGetRepoPrs(user: String, repoName: String) {
         repo.getPrsOfARepo(user, repoName) {
-            _changes.value = true
+            _changes.value = it
         }
-
-
     }
-
+//    fun callRepoByLangs(lang: String){
+//        val fullLang = "language:${lang}"
+//        repo.getReposBylang(fullLang){
+//            _refresh.value = it
+//        }
+//    }
 }
