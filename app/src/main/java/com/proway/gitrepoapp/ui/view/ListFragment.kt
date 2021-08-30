@@ -25,8 +25,8 @@ class ListFragment : Fragment(R.layout.list_fragment) {
 
     private lateinit var viewModel: ListViewModel
     private lateinit var recycler: RecyclerView
-    private var adapter = AdapterRepositorios() { rr ->
-        viewModel.callGetRepoPrs(rr.ownerInfo.login, rr.repoName)
+    private var adapter = AdapterRepositorios() { repoResponse ->
+        viewModel.callGetRepoPrs(repoResponse.ownerInfo.login, repoResponse.repoName)
     }
     private lateinit var binding: ListFragmentBinding
     private var observerResp = Observer<Boolean> {
