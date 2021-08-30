@@ -39,7 +39,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/blue_dark"
-                android:textSize="16dp"
+                android:textSize="14dp"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/imageViewAuthor"
                 app:layout_constraintEnd_toEndOf="@+id/imageViewAuthor"
                 app:layout_constraintStart_toStartOf="@+id/imageViewAuthor"
@@ -53,6 +54,7 @@
                 android:layout_margin="10dp"
                 android:textColor="@color/blue_light"
                 android:textSize="20dp"
+                android:layout_marginBottom="1dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/textViewAuthorName"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +65,7 @@
                 android:id="@+id/textViewRepositoryDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="1dp"
                 android:maxLines="2"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/textViewStars"
@@ -103,7 +105,8 @@
                 android:layout_marginBottom="20dp"
                 android:src="@drawable/github_mark_120px_plus"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textViewStars" />
+                app:layout_constraintStart_toEndOf="@+id/textViewStars"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryDescription" />
 
             <TextView
                 android:id="@+id/textViewForks"

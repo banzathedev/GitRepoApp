@@ -35,13 +35,14 @@
                 android:id="@+id/textViewAuthorName"
                 android:textColor="@color/blue_light"
                 android:layout_width="0dp"
+                android:textAlignment="center"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/imageViewAuthor"
                 app:layout_constraintEnd_toEndOf="@+id/imageViewAuthor"
                 app:layout_constraintStart_toStartOf="@+id/imageViewAuthor"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="nome auhtor"
-                android:textSize="16dp" />
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/textViewTittlePullRequest"
@@ -60,7 +61,7 @@
                 android:id="@+id/textViewOpenDate"
                 android:textColor="@color/orange"
                 android:layout_width="0dp"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@+id/textViewTittlePullRequest"
                 app:layout_constraintStart_toStartOf="@+id/textViewTittlePullRequest"
@@ -69,7 +70,7 @@
             <TextView
                 android:id="@+id/textViewClosedDate"
                 android:layout_width="0dp"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:textColor="@color/orange"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@+id/textViewOpenDate"
