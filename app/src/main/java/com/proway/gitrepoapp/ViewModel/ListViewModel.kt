@@ -19,10 +19,10 @@ class ListViewModel : ViewModel() {
             _changes.value = it
         }
     }
-//    fun callRepoByLangs(lang: String){
-//        val fullLang = "language:${lang}"
-//        repo.getReposBylang(fullLang){
-//            _refresh.value = it
-//        }
-//    }
+    fun callRepoByLangs(lang: String){
+
+        repo.getReposBylang(lang){
+            _refresh.value = it
+        }
+    }
 }

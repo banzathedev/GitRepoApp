@@ -95,28 +95,28 @@ class ReposRepository {
     }
 
 
-//    fun getReposBylang(lang: String, callback: (Boolean) -> Unit) {
-//        val api = RetrofitBuilder.getInstance(BuildConfig.GITHUB_API_URL)
-//            .create(ServiceRepoByLanguage::class.java)
-//        api.getByLang(lang).clone().enqueue(object : Callback<ItemRepoList> {
-//            override fun onResponse(call: Call<ItemRepoList>, response: Response<ItemRepoList>) {
-//                response.body().let { resp ->
-//                    if (resp != null) {
-//                        SingletonRepoResponse.resp = resp.repolist
-//                        callback(true)
-//
-//                    } else {
-//                        println()
-//                    }
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ItemRepoList>, t: Throwable) {
-//
-//                println(t.message)
-//            }
-//
-//
-//        })
-//    }
+    fun getReposBylang(lang: String, callback: (Boolean) -> Unit) {
+        val api = RetrofitBuilder.getInstance(BuildConfig.GITHUB_API_URL)
+            .create(ServiceRepoByLanguage::class.java)
+        api.getByLang("Language:${lang}").clone().enqueue(object : Callback<ItemRepoList> {
+            override fun onResponse(call: Call<ItemRepoList>, response: Response<ItemRepoList>) {
+                response.body().let { resp ->
+                    if (resp != null) {
+                        SingletonRepoResponse.resp = resp.repolist
+                        callback(true)
+
+                    } else {
+                        println()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ItemRepoList>, t: Throwable) {
+
+                println(t.message)
+            }
+
+
+        })
+    }
 }

@@ -31,7 +31,7 @@ class ListFragment : Fragment(R.layout.list_fragment) {
 
     private lateinit var viewModel: ListViewModel
     private lateinit var recycler: RecyclerView
-    private lateinit var selectedLang: LanguagesResponse
+    private var selectedLanguage: String? = null
     private var adapter = AdapterRepositorios() { repoResp ->
         viewModel.callGetRepoPrs(repoResp.ownerInfo.login, repoResp.repoName)
     }
@@ -48,8 +48,10 @@ class ListFragment : Fragment(R.layout.list_fragment) {
         }
     }
     private var observerLang = Observer<Boolean> {
-        if (it == true){
-          // TODO   adapter.refresh()
+        if (it == true) {
+            SingletonRepoResponse.resp?.let { adapter.refresh(it) }
+        } else {
+            Snackbar.make(requireView(), "Ocorreu um erro na pesquisa", Snackbar.LENGTH_LONG).show()
         }
     }
 
@@ -58,11 +60,19 @@ class ListFragment : Fragment(R.layout.list_fragment) {
         binding = ListFragmentBinding.bind(view)
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
         viewModel.changes.observe(viewLifecycleOwner, observerResp)
+        viewModel.refresh.observe(viewLifecycleOwner, observerLang)
         recycler = binding.recyclerViewNoXml
         recycler.layoutManager = LinearLayoutManager(requireContext())
         recycler.adapter = adapter
         createDropCategories(SingletonLangs.resp)
         SingletonRepoResponse.resp?.let { adapter.refresh(it) }
+
+        //TODO Arrumar
+        binding.spinnerIdXML.onItemClickListener.apply {
+            if (selectedLanguage != null) {
+                viewModel.callRepoByLangs(selectedLanguage!!)
+            }
+        }
     }
 
     private fun createDropCategories(lang: List<LanguagesResponse>?) {
@@ -74,11 +84,14 @@ class ListFragment : Fragment(R.layout.list_fragment) {
             binding.spinnerIdXML.adapter = adapter
 
             binding.spinnerIdXML.onItemSelectedListener =
+
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                        selectedLang = p0?.getItemAtPosition(p2) as LanguagesResponse
+                        var selectedLang = p0?.getItemAtPosition(p2) as LanguagesResponse
                         // TODO call a method to get a new list by langs.
-                      // TODO  viewModel.callRepoByLangs(selectedLang.name.toString())
+                        selectedLanguage = selectedLang.name
+
+
                     }
 
                     override fun onNothingSelected(p0: AdapterView<*>?) {
